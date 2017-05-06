@@ -19,8 +19,8 @@ package org.template
 
 import java.util
 
+import io.prediction.data.storage.{Storage, StorageClientConfig, elasticsearch}
 import grizzled.slf4j.Logger
-import org.apache.predictionio.data.storage._
 import org.apache.hadoop.hbase.protobuf.generated.ClientProtos.GetRequest
 import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
@@ -38,7 +38,6 @@ import org.elasticsearch.spark._
 import org.elasticsearch.search.SearchHits
 import org.json4s.JValue
 import org.template.conversions.{ ItemID, ItemProps }
-
 import scala.collection.immutable
 import scala.collection.parallel.mutable
 
