@@ -21,6 +21,7 @@ import java.util
 
 import grizzled.slf4j.Logger
 import org.apache.predictionio.data.storage._
+import org.apache.predictionio.data.storage.elasticsearch._
 import org.apache.hadoop.hbase.protobuf.generated.ClientProtos.GetRequest
 import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
@@ -32,13 +33,16 @@ import org.elasticsearch.action.admin.indices.refresh.RefreshRequest
 import org.elasticsearch.action.get.GetResponse
 import org.elasticsearch.client.transport.TransportClient
 import org.elasticsearch.common.settings.Settings
+import org.elasticsearch.index.query.QueryBuilders
 import org.joda.time.DateTime
 import org.json4s.jackson.JsonMethods._
 import org.elasticsearch.spark._
 import org.elasticsearch.search.SearchHits
+import org.elasticsearch.search.builder.SearchSourceBuilder
 import org.json4s.JValue
 import org.template.conversions.{ ItemID, ItemProps }
-import scala.collection.immutable
+
+import scala.collection.{ immutable, mutable }
 import scala.collection.parallel.mutable
 
 /** Elasticsearch notes:
@@ -215,7 +219,9 @@ object EsClient {
    *  @return a [PredictedResults] collection
    */
   def search(query: String, indexName: String): Option[SearchHits] = {
-    val sr = client.prepareSearch(indexName).setSource(query).get()
+    val source = SearchSourceBuilder.searchSource()
+    source.query(QueryBuilders.wrapperQuery(query))
+    val sr = client.prepareSearch(indexName).setSource(source).get()
 
     if (!sr.isTimedOut) {
       Some(sr.getHits)
