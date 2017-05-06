@@ -35,7 +35,6 @@ import org.elasticsearch.common.settings.Settings
 import org.joda.time.DateTime
 import org.json4s.jackson.JsonMethods._
 import org.elasticsearch.spark._
-import org.elasticsearch.node.NodeBuilder._
 import org.elasticsearch.search.SearchHits
 import org.json4s.JValue
 import org.template.conversions.{ ItemID, ItemProps }
