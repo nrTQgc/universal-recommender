@@ -16,10 +16,16 @@ libraryDependencies ++= Seq(
   "org.apache.hbase" % "hbase-client" % "1.3.1",
   "org.elasticsearch" % "elasticsearch" % "5.3.2",
 //   "org.apache.lucene" % "lucene-core" % "6.4.2",
-  "org.apache.predictionio" %% "apache-predictionio-core" % "0.11.0-incubating" % "provided",
-  "org.apache.predictionio" %% "apache-predictionio-data-elasticsearch1" % "0.11.0-incubating" % "provided",
+  "org.apache.predictionio" %% "apache-predictionio-core" % "0.11.0-incubating" % "provided"
+    exclude("com.chuusai", "shapeless_2.10")
+    exclude("io.spray", "spray-routing_2.10")
+    excludeAll ExclusionRule("com.chuusai", "shapeless"),
+  "org.apache.predictionio" %% "apache-predictionio-data-elasticsearch1" % "0.11.0-incubating" % "provided"
+    exclude("com.chuusai", "shapeless_2.10")
+    exclude("io.spray", "spray-routing_2.10")
+    excludeAll ExclusionRule("com.chuusai", "shapeless"),
   "org.apache.spark" %% "spark-core" % "2.1.0" % "provided",
-//  "org.apache.spark" %% "spark-mllib" % "2.1.0" % "provided",
+  "org.apache.spark" %% "spark-mllib" % "2.1.0" % "provided",
   "org.xerial.snappy" % "snappy-java" % "1.1.1.7",
   // Mahout's Spark libs
   "org.apache.mahout" %% "mahout-math-scala" % mahoutVersion,
