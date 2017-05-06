@@ -10,7 +10,7 @@ assemblyMergeStrategy in assembly := {
 name := "universal-recommender"
 
 name := "template-scala-parallel-universal-recommendation"
-
+scalaVersion := "2.11.11"
 version := "0.5.0"
 
 organization := "com.actionml"
@@ -22,12 +22,12 @@ libraryDependencies ++= Seq(
   "org.elasticsearch" % "elasticsearch" % "5.3.2",
 //   "org.apache.lucene" % "lucene-core" % "6.4.2",
   "org.apache.predictionio" %% "apache-predictionio-core" % "0.11.0-incubating" % "provided"
-    exclude("com.chuusai", "shapeless_2.10")
-    exclude("io.spray", "spray-routing_2.10")
+    exclude("com.chuusai", "shapeless_2.11")
+    exclude("io.spray", "spray-routing_2.11")
     excludeAll ExclusionRule("com.chuusai", "shapeless"),
   "org.apache.predictionio" %% "apache-predictionio-data-elasticsearch1" % "0.11.0-incubating" % "provided"
-    exclude("com.chuusai", "shapeless_2.10")
-    exclude("io.spray", "spray-routing_2.10")
+    exclude("com.chuusai", "shapeless_2.11")
+    exclude("io.spray", "spray-routing_2.11")
     excludeAll ExclusionRule("com.chuusai", "shapeless"),
   "org.apache.spark" %% "spark-core" % "2.1.0" % "provided",
   "org.apache.spark" %% "spark-mllib" % "2.1.0" % "provided",
@@ -35,7 +35,7 @@ libraryDependencies ++= Seq(
   // Mahout's Spark libs
   "org.apache.mahout" %% "mahout-math-scala" % mahoutVersion,
   "org.apache.mahout" %% "mahout-spark" % mahoutVersion
-    exclude("org.apache.spark", "spark-core_2.10"),
+    exclude("org.apache.spark", "spark-core_2.11"),
   "org.apache.mahout"  % "mahout-math" % mahoutVersion,
   "org.apache.mahout"  % "mahout-hdfs" % mahoutVersion
     exclude("com.thoughtworks.xstream", "xstream")
@@ -43,9 +43,9 @@ libraryDependencies ++= Seq(
   // other external libs
   "com.thoughtworks.xstream" % "xstream" % "1.4.4"
     exclude("xmlpull", "xmlpull"),
-  "org.elasticsearch" % "elasticsearch-spark_2.10" % "2.1.2"
-    exclude("org.apache.spark", "spark-catalyst_2.10")
-    exclude("org.apache.spark", "spark-sql_2.10"),
+  "org.elasticsearch" % "elasticsearch-spark_2.11" % "2.1.2"
+    exclude("org.apache.spark", "spark-catalyst_2.11")
+    exclude("org.apache.spark", "spark-sql_2.11"),
   "org.json4s" %% "json4s-native" % "3.2.10")
 //  .map(_.exclude("org.apache.lucene","lucene-core"))
   .map(_.exclude("org.apache.lucene","lucene-analyzers-common"))
